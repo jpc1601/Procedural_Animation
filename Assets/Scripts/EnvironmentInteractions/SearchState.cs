@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class SearchState : EnvironmentInteractionState
 {
+    public float approachDistanceThreshold = 2f;
+    
     public SearchState(EnvironmentInteractionContext context,
         EnvironmentInterationStateMachine.EEnvironmentInteractionState eState) : base(context, eState)
     {
@@ -10,7 +12,7 @@ public class SearchState : EnvironmentInteractionState
 
     public override void EnterState()
     {
-        Debug.Log("SEARCH START");
+        Debug.Log("ENTER SEARCH");
     }
 
     public override void ExitState()
@@ -23,6 +25,11 @@ public class SearchState : EnvironmentInteractionState
 
     public override EnvironmentInterationStateMachine.EEnvironmentInteractionState GetNextState()
     {
+        bool isCloseToTarget = Vector3.Distance(environmentInteractionContext.ClosestPointOnColliderFromShoulder, environmentInteractionContext.RootTransform.position) < approachDistanceThreshold;
+        bool isClosestPointOnColliderValid = environmentInteractionContext.ClosestPointOnColliderFromShoulder != Vector3.positiveInfinity;
+
+        if (isClosestPointOnColliderValid && isCloseToTarget)
+            return EnvironmentInterationStateMachine.EEnvironmentInteractionState.Approach;
         return StateKey;
     }
 

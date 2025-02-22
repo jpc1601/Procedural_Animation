@@ -13,6 +13,7 @@ public class ResetState : EnvironmentInteractionState
 
     public override void EnterState()
     {
+        Debug.Log("ENTER RESET");
         _elapsedTime = 0f;
         environmentInteractionContext.ClosestPointOnColliderFromShoulder = Vector3.positiveInfinity;
         environmentInteractionContext.CurrentIntersectingCollider = null;
