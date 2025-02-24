@@ -52,6 +52,8 @@ public class EnvironmentInterationStateMachine : StateManager<EnvironmentInterat
         var center = capsuleCollider.center;
         boxCollider.center = new Vector3(center.x, center.y + wingSize * 0.25f, center.z + wingSize * 0.5f);
         boxCollider.isTrigger = true;
+
+        environmentInteractionContext.ColliderCenterY = center.y;
     }
 
     private void OnDrawGizmosSelected()

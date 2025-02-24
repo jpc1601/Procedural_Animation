@@ -56,6 +56,7 @@ public abstract class EnvironmentInteractionState : BaseState<EnvironmentInterat
         Vector3 offset = normalizedRayDirection * offsetDistance;
         Vector3 offsetPosition = environmentInteractionContext.ClosestPointOnColliderFromShoulder + offset;
 
-        environmentInteractionContext.CurrentIkTargetTransform.position = offsetPosition;
+        environmentInteractionContext.CurrentIkTargetTransform.position = 
+            new Vector3(offsetPosition.x, environmentInteractionContext.InteractionPointYOffset, offsetPosition.z);
     }
 }

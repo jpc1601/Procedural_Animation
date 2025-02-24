@@ -16,6 +16,8 @@ public class EnvironmentInteractionContext
     private Rigidbody _rigidBody;
     private CapsuleCollider _capsuleCollider;
     private Transform _rootTransform;
+    private Vector3 _leftOriginalTargetPosition;
+    private Vector3 _rightOriginalTargetPosition;
 
     public EnvironmentInteractionContext(
         TwoBoneIKConstraint leftArmTwoBoneIKConstraint,
@@ -32,8 +34,12 @@ public class EnvironmentInteractionContext
         _rigidBody = rigidbody;
         _capsuleCollider = capsuleCollider;
         _rootTransform = rootTransform;
+        _leftOriginalTargetPosition = _leftArmTwoBoneIKConstraint.data.target.localPosition;
+        _rightOriginalTargetPosition = _rightArmTwoBoneIKConstraint.data.target.localPosition;
 
+        OriginalTargetRotation = _leftArmTwoBoneIKConstraint.data.target.rotation;
         CharacterShoulderHeight = _leftArmTwoBoneIKConstraint.data.root.parent.position.y;
+        SetCurrentSide(Vector3.positiveInfinity);
     }
     
     public TwoBoneIKConstraint LeftArmTwoBoneIKConstraint => _leftArmTwoBoneIKConstraint;
@@ -52,6 +58,10 @@ public class EnvironmentInteractionContext
     public Vector3 ClosestPointOnColliderFromShoulder { get; set; } = Vector3.positiveInfinity;
     public float CharacterShoulderHeight { get; set; }
     public EBodySide CurrentBodySide { get; private set; }
+    public float InteractionPointYOffset { get; set; }
+    public float ColliderCenterY { get; set; }
+    public Vector3 CurrentOriginalTargetPosition { get; private set; }
+    public Quaternion OriginalTargetRotation { get; private set; }
 
     public void SetCurrentSide(Vector3 pointToCheck)
     {
@@ -65,6 +75,7 @@ public class EnvironmentInteractionContext
             CurrentBodySide = EBodySide.Left;
             CurrentTwoBoneIKConstraint = LeftArmTwoBoneIKConstraint;
             CurrentMultiRotationConstraint = LeftArmMultiRotationConstraint;
+            CurrentOriginalTargetPosition = _leftOriginalTargetPosition;
         }
         else
         {
@@ -72,6 +83,7 @@ public class EnvironmentInteractionContext
             CurrentBodySide = EBodySide.Right;
             CurrentTwoBoneIKConstraint = RightArmTwoBoneIKConstraint;
             CurrentMultiRotationConstraint = RightArmMultiRotationConstraint;
+            CurrentOriginalTargetPosition = _rightOriginalTargetPosition;
         }
 
         CurrentIkTargetTransform = CurrentTwoBoneIKConstraint.data.target.transform;
