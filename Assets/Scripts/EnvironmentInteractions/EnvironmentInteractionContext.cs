@@ -62,6 +62,7 @@ public class EnvironmentInteractionContext
     public float ColliderCenterY { get; set; }
     public Vector3 CurrentOriginalTargetPosition { get; private set; }
     public Quaternion OriginalTargetRotation { get; private set; }
+    public float LowestDistance { get; set; } = Mathf.Infinity;
 
     public void SetCurrentSide(Vector3 pointToCheck)
     {

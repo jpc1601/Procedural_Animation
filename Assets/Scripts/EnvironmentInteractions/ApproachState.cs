@@ -36,7 +36,7 @@ public class ApproachState : EnvironmentInteractionState
 
         environmentInteractionContext.CurrentIkTargetTransform.rotation = Quaternion.RotateTowards(
             environmentInteractionContext.CurrentIkTargetTransform.rotation, expectedGroundRotation, 
-            _elapsedTime / _rotationSpeed);
+            _rotationSpeed * Time.deltaTime);
         
         environmentInteractionContext.CurrentMultiRotationConstraint.weight = Mathf.Lerp(
             environmentInteractionContext.CurrentMultiRotationConstraint.weight, _approachRotationWeight,
@@ -50,12 +50,15 @@ public class ApproachState : EnvironmentInteractionState
     public override EnvironmentInterationStateMachine.EEnvironmentInteractionState GetNextState()
     {
         bool isOverStateLifeDuration = _elapsedTime >= _approachDuration;
-        if(isOverStateLifeDuration)
+        if(isOverStateLifeDuration || CheckShouldReset())
             return EnvironmentInterationStateMachine.EEnvironmentInteractionState.Reset;
         
         bool isWithinArmReach = Vector3.Distance(environmentInteractionContext.ClosestPointOnColliderFromShoulder,
             environmentInteractionContext.CurrentShoulderTransform.position) < _riseDistanceThreshold;
-        bool isClosestPointOnColliderValid = environmentInteractionContext.ClosestPointOnColliderFromShoulder != Vector3.positiveInfinity;
+
+        bool isClosestPointOnColliderValid = environmentInteractionContext.ClosestPointOnColliderFromShoulder !=
+                                             Vector3.positiveInfinity;
+        
         if (isWithinArmReach && isClosestPointOnColliderValid)
             return EnvironmentInterationStateMachine.EEnvironmentInteractionState.Rise;
         

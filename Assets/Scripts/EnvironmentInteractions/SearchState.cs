@@ -12,7 +12,7 @@ public class SearchState : EnvironmentInteractionState
 
     public override void EnterState()
     {
-        Debug.Log("ENTER SEARCH");
+        // Debug.Log("ENTER SEARCH");
     }
 
     public override void ExitState()
@@ -25,10 +25,15 @@ public class SearchState : EnvironmentInteractionState
 
     public override EnvironmentInterationStateMachine.EEnvironmentInteractionState GetNextState()
     {
-        bool isCloseToTarget = Vector3.Distance(environmentInteractionContext.ClosestPointOnColliderFromShoulder, environmentInteractionContext.RootTransform.position) < approachDistanceThreshold;
-        bool isClosestPointOnColliderValid = environmentInteractionContext.ClosestPointOnColliderFromShoulder != Vector3.positiveInfinity;
-        // Debug.Log(isCloseToTarget);
-        // Debug.Log("== " + isClosestPointOnColliderValid);
+        if (CheckShouldReset())
+            return EnvironmentInterationStateMachine.EEnvironmentInteractionState.Reset;
+
+        bool isCloseToTarget = Vector3.Distance(environmentInteractionContext.ClosestPointOnColliderFromShoulder,
+            environmentInteractionContext.RootTransform.position) < approachDistanceThreshold;
+
+        bool isClosestPointOnColliderValid = environmentInteractionContext.ClosestPointOnColliderFromShoulder !=
+                                             Vector3.positiveInfinity;
+        
         if (isClosestPointOnColliderValid && isCloseToTarget)
             return EnvironmentInterationStateMachine.EEnvironmentInteractionState.Approach;
         
