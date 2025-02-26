@@ -6,12 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="33f02935-39c0-45cb-912a-bc3bd3ee9c4a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProceduralAnimation/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProceduralAnimation/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnvironmentInteractions/ApproachState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnvironmentInteractions/ApproachState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnvironmentInteractions/EnvironmentInteractionContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnvironmentInteractions/EnvironmentInteractionContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnvironmentInteractions/EnvironmentInteractionState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnvironmentInteractions/EnvironmentInteractionState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnvironmentInteractions/EnvironmentInterationStateMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnvironmentInteractions/EnvironmentInterationStateMachine.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnvironmentInteractions/ResetState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnvironmentInteractions/ResetState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnvironmentInteractions/SearchState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnvironmentInteractions/SearchState.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,6 +94,7 @@
       <workItem from="1739592367779" duration="11644000" />
       <workItem from="1740199241947" duration="11635000" />
       <workItem from="1740392456519" duration="5433000" />
+      <workItem from="1740543743499" duration="1893000" />
     </task>
     <servers />
   </component>
